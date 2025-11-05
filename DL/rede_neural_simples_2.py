@@ -2,6 +2,14 @@ from keras.models import Sequential
 from keras.layers import Dense
 import numpy as np
 import pandas as pd
+from sklearn.metrics import (
+    accuracy_score,
+    precision_score,
+    recall_score,
+    f1_score,
+    confusion_matrix,
+    roc_auc_score,
+)
 
 # ----------------------------------------------------------
 # EXPLICAÇÃO DETALHADA DO CÓDIGO
@@ -183,6 +191,23 @@ model.fit(X, y, epochs=150, batch_size=10)
 X_novo = np.random.random((5, 8))  # 5 novos exemplos
 y_calculado = generate_binary_labels(X_novo)
 y_pred = model.predict(X_novo)
+# Convertendo as predições para 0 ou 1
+y_pred_bin = (y_pred > 0.5).astype(int)
 print("Novos exemplos:\n", pd.DataFrame(X_novo))
 print("Valores reais calculados:\n", pd.DataFrame(y_calculado))
-print("Predições do modelo:\n", pd.DataFrame(y_pred))
+print("Predições do modelo:\n", pd.DataFrame(y_pred_bin))
+
+
+# Métricas de avaliação:
+# - Acurácia: Proporção de acertos totais (quantos exemplos o modelo classificou corretamente).
+print("Acurácia:", accuracy_score(y_calculado, y_pred_bin))
+# - Precisão: Entre os exemplos previstos como positivos, quantos realmente são positivos.
+print("Precisão:", precision_score(y_calculado, y_pred_bin))
+# - Revocação (Recall/Sensibilidade): Entre todos os positivos reais, quantos o modelo acertou.
+print("Revocação:", recall_score(y_calculado, y_pred_bin))
+# - F1-score: Média harmônica entre precisão e revocação (bom para dados desbalanceados).
+print("F1-score:", f1_score(y_calculado, y_pred_bin))
+# - Matriz de confusão: Mostra a contagem de verdadeiros positivos, falsos positivos, verdadeiros negativos e falsos negativos.
+print("Matriz de confusão:\n", confusion_matrix(y_calculado, y_pred_bin))
+# - AUC-ROC: Mede a capacidade do modelo de separar as classes (quanto mais próximo de 1, melhor).
+print("AUC-ROC:", roc_auc_score(y_calculado, y_pred))
