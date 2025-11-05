@@ -1,5 +1,5 @@
 # Ignora ambientes virtuais Python
-venv/
+.venv/
 .env/
 
 # Ignora arquivos de cache do Python
