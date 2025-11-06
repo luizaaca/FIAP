@@ -21,3 +21,8 @@ print("Acessando y2[0, 0]:", y2[0, 0])  # retorna um escalar
 # Exemplo de uso em operações
 print("\nSoma de todos elementos y1:", y1.sum())
 print("Soma de todos elementos y2:", y2.sum())
+
+
+def exemplo_operacao(array):
+    """Exemplo de função que opera em arrays numpy."""
+    return array * 2 + 3
