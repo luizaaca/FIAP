@@ -22,3 +22,6 @@ __pycache__/
 # Ignora arquivos de sistema
 .DS_Store
 Thumbs.db
+
+# Ignora arquivos para instruções do github copilot
+.github/instructions/
