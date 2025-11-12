@@ -9,6 +9,7 @@
 # Abaixo está uma explicação detalhada de cada etapa e da matemática envolvida.
 
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error
 import numpy as np
 
 # 1. Criação dos dados de entrada (X) e saída (y)
@@ -66,6 +67,13 @@ print("Valores reais do conjunto de teste:", y_teste)
 print("Score R² no teste:", model.score(X_teste, y_teste))
 # O score R² no teste mostra o quanto o modelo consegue explicar a variação dos dados novos.
 
+# Mean squared error (MSE) no conjunto de teste
+mse_teste = mean_squared_error(y_teste, previsoes_teste)
+print("Mean Squared Error (MSE) no teste:", mse_teste)
+
+# Mean absolute error (MAE) no conjunto de teste
+mae_teste = mean_absolute_error(y_teste, previsoes_teste)
+print("Mean Absolute Error (MAE) no teste:", mae_teste)
 
 # Matemática envolvida (explicação simples):
 # A regressão linear aprende uma equação do tipo:
@@ -148,7 +156,9 @@ plt.plot(X_teste_n2[:, 0], y_teste_n2, "bs-", label="Teste Quadrático (real)")
 # Adicionando as linhas previstas pelo modelo para cada conjunto
 plt.plot(X[:, 0], model.predict(X), "r--", label="Treinamento (previsto)")
 plt.plot(X_teste[:, 0], previsoes_teste, "g--", label="Teste Linear (previsto)")
-plt.plot(X_teste_n2[:, 0], previsoes_teste_n2, "b--", label="Teste Quadrático (previsto)")
+plt.plot(
+    X_teste_n2[:, 0], previsoes_teste_n2, "b--", label="Teste Quadrático (previsto)"
+)
 
 plt.xlabel("X1")
 plt.ylabel("y")

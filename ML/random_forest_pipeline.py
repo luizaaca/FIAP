@@ -7,7 +7,7 @@ from sklearn.datasets import load_iris
 
 # Carrega o dataset Iris (flores), já separado em X (características) e y (rótulos)
 X, y = load_iris(return_X_y=True)
-print("Formato de X:", X.shape, ", Formato de y:", y.shape)
+print("Formato de X:", X.shape, ", Formato de y:", y.shape)  # type: ignore
 
 # Divide os dados em treino e teste (80% treino, 20% teste)
 X_train, X_test, y_train, y_test = train_test_split(
